@@ -1,6 +1,9 @@
+/*
 let playerSelection;
 let computerSelection;
+*/
 
+/* This function returns ROCK, PAPER, or SCISSORS at random */
 function getComputerChoice () {
     let random = Math.floor(Math.random() * 3);
         if (random == 0) {
@@ -12,6 +15,7 @@ function getComputerChoice () {
         }
 }
 
+/* This function returns an annoucement of who wins */
 function singleRound (playerSelection, computerSelection) {
     playerSelection = prompt("Rock, paper, or scissors");
     computerSelection = getComputerChoice();
@@ -33,4 +37,11 @@ function singleRound (playerSelection, computerSelection) {
     }
 }
 
-console.log(singleRound(playerSelection, computerSelection));
+function game() {
+    for (let i = 1; i <= 5; i++) {
+        console.log(singleRound());
+    }
+
+}
+
+console.log(game());
