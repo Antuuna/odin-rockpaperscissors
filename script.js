@@ -13,28 +13,23 @@ function getComputerChoice () {
 }
 
 function singleRound (playerSelection, computerSelection) {
-    let result;
-    
     playerSelection = prompt("Rock, paper, or scissors");
     computerSelection = getComputerChoice();
 
     if (playerSelection.toUpperCase() == computerSelection) {
-        result = 'TIE';
-        return ("You " + result + "! " + playerSelection.toUpperCase() + " ties " + computerSelection);
+        return ("You tie! " + playerSelection.toUpperCase() + " ties " + computerSelection);
     }
 
     if (((playerSelection.toUpperCase() == 'ROCK') && (computerSelection == 'SCISSORS')) ||
         ((playerSelection.toUpperCase() == 'PAPER') && (computerSelection == 'ROCK')) ||
         ((playerSelection.toUpperCase() == 'SCISSORS') && (computerSelection == 'PAPER'))) {
-        result = 'WIN';
-        return ("You " + result + "! " + playerSelection.toUpperCase() + " beats " + computerSelection);
+        return ("You win! " + playerSelection.toUpperCase() + " beats " + computerSelection);
     }
 
     if (((playerSelection.toUpperCase() == 'ROCK') && (computerSelection == 'PAPER')) ||
         ((playerSelection.toUpperCase() == 'PAPER') && (computerSelection == 'SCISSORS')) ||
         ((playerSelection.toUpperCase() == 'SCISSORS') && (computerSelection == 'ROCK'))) {
-        result = 'LOSE';
-        return ("You " + result + "! " + playerSelection.toUpperCase() + " gets beaten by " + computerSelection);
+        return ("You lose! " + playerSelection.toUpperCase() + " gets beaten by " + computerSelection);
     }
 }
 
