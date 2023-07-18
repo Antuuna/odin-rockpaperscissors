@@ -21,26 +21,50 @@ function singleRound (playerSelection, computerSelection) {
     computerSelection = getComputerChoice();
 
     if (playerSelection.toUpperCase() == computerSelection) {
+        /*
         return ("You tie! " + playerSelection.toUpperCase() + " ties " + computerSelection);
+        */
+       return 'TIE';
     }
 
     if (((playerSelection.toUpperCase() == 'ROCK') && (computerSelection == 'SCISSORS')) ||
         ((playerSelection.toUpperCase() == 'PAPER') && (computerSelection == 'ROCK')) ||
         ((playerSelection.toUpperCase() == 'SCISSORS') && (computerSelection == 'PAPER'))) {
+        /*
         return ("You win! " + playerSelection.toUpperCase() + " beats " + computerSelection);
+        */
+       return 'WIN';
     }
 
     if (((playerSelection.toUpperCase() == 'ROCK') && (computerSelection == 'PAPER')) ||
         ((playerSelection.toUpperCase() == 'PAPER') && (computerSelection == 'SCISSORS')) ||
         ((playerSelection.toUpperCase() == 'SCISSORS') && (computerSelection == 'ROCK'))) {
+        /*
         return ("You lose! " + playerSelection.toUpperCase() + " gets beaten by " + computerSelection);
+        */
+       return 'LOSE';
     }
 }
 
 function game() {
-    for (let i = 1; i <= 5; i++) {
-        console.log(singleRound());
+    let string;
+    let winCount = 0;
+    let loseCount = 0;
+    let roundCount = 1;
+    while (winCount != 5 && loseCount != 5) {
+        string = singleRound();
+        if (string === 'WIN') {
+            console.log('You win round ' + roundCount + '!');
+            winCount++;
+        } else if (string === 'LOSE') {
+            console.log('You lose round ' + roundCount + '!');
+            loseCount++;
+        } else {
+            console.log('You tie round ' + roundCount + '!');
+        }
+        roundCount++;
     }
+    return ('Final score is: ' + winCount + '-' + loseCount);
 
 }
 
