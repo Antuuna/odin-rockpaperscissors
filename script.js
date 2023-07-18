@@ -15,10 +15,28 @@ function getComputerChoice () {
         }
 }
 
+function getPlayerChoice () {
+    const btns = document.querySelectorAll(".btn");
+    btns.forEach((button) => {
+        button.addEventListener("click", () => {
+            return (button.id);
+        });
+    });
+}
+
 /* This function returns an annoucement of who wins */
 function singleRound (playerSelection, computerSelection) {
-    playerSelection = prompt("Rock, paper, or scissors");
+    /*
+    playerSelection = getPlayerChoice();
+    const btns = document.querySelectorAll(".btn");
+    btns.forEach((button) => {
+        button.addEventListener("click", () => {
+            playerSelection = (button.id);
+        });
+    });
+
     computerSelection = getComputerChoice();
+    */
 
     if (playerSelection.toUpperCase() == computerSelection) {
         /*
@@ -42,7 +60,9 @@ function singleRound (playerSelection, computerSelection) {
         /*
         return ("You lose! " + playerSelection.toUpperCase() + " gets beaten by " + computerSelection);
         */
+       
        return 'LOSE';
+    
     }
 }
 
@@ -68,4 +88,9 @@ function game() {
 
 }
 
-console.log(game());
+const buttons = document.querySelectorAll(".btn");
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        console.log(singleRound((button.id), getComputerChoice()))
+    });
+});
