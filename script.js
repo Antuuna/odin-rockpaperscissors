@@ -114,25 +114,35 @@ contentClass.appendChild(narration);
 const buttons = document.querySelectorAll(".btn");
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        playerChoice = button.id.toUpperCase();
-        computerChoice = getComputerChoice();
+        if (playerScore < 7 && computerScore < 7) {
+            playerChoice = button.id.toUpperCase();
+            computerChoice = getComputerChoice();
 
-        winResult = singleRound(playerChoice, computerChoice);
-        winDecider(winResult);
-        scoreTracker.textContent = playerScore + ' - ' + computerScore;
-        contentClass.appendChild(scoreTracker);
+            winResult = singleRound(playerChoice, computerChoice);
+            winDecider(winResult);
+            scoreTracker.textContent = playerScore + ' - ' + computerScore;
+            contentClass.appendChild(scoreTracker);
 
-        if (winResult === 'WIN') {
-            roundNarration = "You " + winResult + "! " + playerChoice +
+            if (winResult === 'WIN') {
+                roundNarration = "You " + winResult + "! " + playerChoice +
                              " beats " + computerChoice + "!";
-        } else if (winResult === "LOSE") {
-            roundNarration = "You " + winResult + "! " + playerChoice +
+            } else if (winResult === "LOSE") {
+                roundNarration = "You " + winResult + "! " + playerChoice +
                              " loses to " + computerChoice + "!";
-        } else if (winResult === "TIE") {
+            } else if (winResult === "TIE") {
             roundNarration = "You " + winResult + "! " + playerChoice +
-                             " ties with " + computerChoice + "!";
+                                 " ties with " + computerChoice + "!";
+            }
+            narration.textContent = roundNarration;
+            contentClass.appendChild(narration);
         }
-        narration.textContent = roundNarration;
-        contentClass.appendChild(narration);
+            if (playerScore === 7) {
+                roundNarration = "You win the game! You beat the computer :p";
+            } else if (computerScore === 7) {
+                roundNarration = "You lose the game! The computer smacked you :o";
+            }
+            narration.textContent = roundNarration;
+            contentClass.appendChild(narration);
     });
 });
+
