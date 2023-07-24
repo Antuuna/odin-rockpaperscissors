@@ -57,9 +57,6 @@ function singleRound (playerSelection, computerSelection) {
     if (((playerSelection.toUpperCase() == 'ROCK') && (computerSelection == 'PAPER')) ||
         ((playerSelection.toUpperCase() == 'PAPER') && (computerSelection == 'SCISSORS')) ||
         ((playerSelection.toUpperCase() == 'SCISSORS') && (computerSelection == 'ROCK'))) {
-        /*
-        return ("You lose! " + playerSelection.toUpperCase() + " gets beaten by " + computerSelection);
-        */
        
        return 'LOSE';
     
@@ -101,6 +98,7 @@ let computerScore = 0;
 let winResult = '';
 let playerChoice = '';
 let computerChoice = '';
+let roundNarration = "Welcome to Antuuna's Rock Paper Scissors!";
 
 const contentClass = document.querySelector('.content');
 const scoreTracker = document.createElement('div');
@@ -108,14 +106,33 @@ scoreTracker.classList.add('score');
 scoreTracker.textContent = playerScore + ' - ' + computerScore;
 contentClass.appendChild(scoreTracker);
 
+const narration = document.createElement('div');
+narration.classList.add('narration');
+narration.textContent = roundNarration;
+contentClass.appendChild(narration);
+
 const buttons = document.querySelectorAll(".btn");
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        playerChoice = button.id;
+        playerChoice = button.id.toUpperCase();
         computerChoice = getComputerChoice();
+
         winResult = singleRound(playerChoice, computerChoice);
         winDecider(winResult);
         scoreTracker.textContent = playerScore + ' - ' + computerScore;
         contentClass.appendChild(scoreTracker);
+
+        if (winResult === 'WIN') {
+            roundNarration = "You " + winResult + "! " + playerChoice +
+                             " beats " + computerChoice + "!";
+        } else if (winResult === "LOSE") {
+            roundNarration = "You " + winResult + "! " + playerChoice +
+                             " loses to " + computerChoice + "!";
+        } else if (winResult === "TIE") {
+            roundNarration = "You " + winResult + "! " + playerChoice +
+                             " ties with " + computerChoice + "!";
+        }
+        narration.textContent = roundNarration;
+        contentClass.appendChild(narration);
     });
 });
