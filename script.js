@@ -66,6 +66,14 @@ function singleRound (playerSelection, computerSelection) {
     }
 }
 
+function winDecider(roundResult) {
+    if (roundResult === 'WIN') {
+        return playerScore++;
+    } else if (roundResult === 'LOSE') {
+        return computerScore++;
+    }
+}
+
 function game() {
     let string;
     let winCount = 0;
@@ -88,9 +96,26 @@ function game() {
 
 }
 
+let playerScore = 0;
+let computerScore = 0;
+let winResult = '';
+let playerChoice = '';
+let computerChoice = '';
+
+const contentClass = document.querySelector('.content');
+const scoreTracker = document.createElement('div');
+scoreTracker.classList.add('score');
+scoreTracker.textContent = playerScore + ' - ' + computerScore;
+contentClass.appendChild(scoreTracker);
+
 const buttons = document.querySelectorAll(".btn");
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        console.log(singleRound((button.id), getComputerChoice()))
+        playerChoice = button.id;
+        computerChoice = getComputerChoice();
+        winResult = singleRound(playerChoice, computerChoice);
+        winDecider(winResult);
+        scoreTracker.textContent = playerScore + ' - ' + computerScore;
+        contentClass.appendChild(scoreTracker);
     });
 });
