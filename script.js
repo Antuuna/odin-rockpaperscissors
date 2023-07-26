@@ -44,19 +44,19 @@ let roundNarration = "Welcome to Antuuna's Rock Paper Scissors!";
 
 const contentClass = document.querySelector('.content');
 const scoreTracker = document.createElement('div');
-scoreTracker.classList.add('score');
+scoreTracker.classList.add('font');
 scoreTracker.textContent = playerScore + ' - ' + computerScore;
 contentClass.appendChild(scoreTracker);
 
 const narration = document.createElement('div');
-narration.classList.add('narration');
+narration.classList.add('font');
 narration.textContent = roundNarration;
 contentClass.appendChild(narration);
 
 const buttons = document.querySelectorAll(".btn");
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        if (playerScore < 7 && computerScore < 7) {
+        if (playerScore < 5 && computerScore < 5) {
             playerChoice = button.id.toUpperCase();
             computerChoice = getComputerChoice();
 
@@ -78,13 +78,12 @@ buttons.forEach((button) => {
             narration.textContent = roundNarration;
             contentClass.appendChild(narration);
         }
-            if (playerScore === 7) {
-                roundNarration = "You win the game! You beat the computer :p";
-            } else if (computerScore === 7) {
-                roundNarration = "You lose the game! The computer smacked you :o";
+            if (playerScore === 5) {
+                roundNarration = "You win the game! Refresh to play again! :p";
+            } else if (computerScore === 5) {
+                roundNarration = "You lose the game! Refresh to play again! :o";
             }
             narration.textContent = roundNarration;
             contentClass.appendChild(narration);
     });
 });
-
